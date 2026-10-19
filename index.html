@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#211b30">
+  <meta name="description" content="Un pequeño juego de aniversario: entre flores marchitas, una sola sigue floreciendo.">
+  <title>La flor más hermosa ♡ | 19/10/26</title>
+  <link rel="icon" href="assets/corazon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="recuerdos.js"></script>
+  <script defer src="game.js"></script>
+</head>
+<body>
+  <div id="app">
+    <main id="menuScreen" class="screen menu-screen">
+      <div class="menu-wrap">
+        <header class="brand-bar">
+          <span class="brand-mark">✦ PARA NOSOTROS <span class="tiny-heart">♥</span></span>
+          <span class="brand-date">19 OCTUBRE 2026</span>
+        </header>
+
+        <section class="hero" aria-labelledby="heroTitle">
+          <img class="hero-art" src="assets/portada.png" alt="Dos personajes en pixel art, entre flores marchitas y una sola rosa luminosa" draggable="false">
+          <div class="hero-vignette"></div>
+          <div class="hero-copy">
+            <span class="eyebrow">UN JUEGO HECHO CON AMOR</span>
+            <h1 id="heroTitle">La flor<br><em>más hermosa</em><span class="title-dot">.</span></h1>
+            <p>En un mundo donde todas las flores se marchitaron... hay una que todavía brilla.</p>
+          </div>
+          <div class="hero-corner">♡</div>
+        </section>
+
+        <div class="chapter-heading">
+          <div>
+            <span class="eyebrow muted">ELIGE UN RECUERDO</span>
+            <h2>Capítulos de nuestra historia</h2>
+          </div>
+          <span class="chapter-small">01 / 02</span>
+        </div>
+
+        <section class="chapter-grid" aria-label="Selección de niveles">
+          <button type="button" class="chapter-card available" id="startButton" aria-label="Jugar nivel 1, 19 de octubre de 2026">
+            <span class="chapter-illustration" aria-hidden="true">✿</span>
+            <span class="chapter-info">
+              <span class="chapter-overline">CAPÍTULO 01 · DISPONIBLE</span>
+              <strong>19/10/26</strong>
+              <span id="levelOneCaption" class="chapter-caption">El día en que todo florece ♡</span>
+            </span>
+            <span class="chapter-action" aria-hidden="true">➜</span>
+          </button>
+          <button type="button" class="chapter-card locked" id="lockedButton" aria-label="Nivel 2, 19 de octubre de 2027, bloqueado">
+            <span class="chapter-illustration lock-illustration" aria-hidden="true">♧</span>
+            <span class="chapter-info">
+              <span class="chapter-overline">CAPÍTULO 02 · BLOQUEADO</span>
+              <strong>19/10/27 <span class="padlock">🔒</span></strong>
+              <span class="chapter-caption">Nuestra próxima aventura...</span>
+            </span>
+            <span class="chapter-action locked-action" aria-hidden="true">✧</span>
+          </button>
+        </section>
+        <p id="lockedNote" class="locked-note" role="status" aria-live="polite"></p>
+        <div class="memory-edit-link"><span>♥ 12 recuerdos escondidos en el camino</span><a href="personalizar.html">✦ Personalizar fotos y mensajes</a></div>
+        <footer class="menu-footer">
+          <span>HECHO DE PÍXELES, RECUERDOS Y AMOR</span>
+          <span class="footer-heart">♥ ♥ ♥</span>
+        </footer>
+      </div>
+    </main>
+
+    <main id="gameScreen" class="screen game-screen" hidden>
+      <div class="game-layout">
+        <header class="game-topbar">
+          <button type="button" id="backButton" class="icon-button" aria-label="Volver al menú">‹ <span>MENÚ</span></button>
+          <div class="game-heading"><small>CAPÍTULO 01 · 19/10/26</small><strong>La flor más hermosa ♡</strong></div>
+          <div class="game-top-actions">
+            <button type="button" id="musicButton" class="icon-button sound-button" aria-label="Desactivar música">♪ <span>ON</span></button>
+            <button type="button" id="pauseButton" class="icon-button" aria-label="Pausar juego">Ⅱ</button>
+          </div>
+        </header>
+
+        <div class="mission-line"><span>✦ MISIÓN:</span> Salta las flores marchitas: cada una te quita 1 vida. Tienes solo 3 ♥. Recoge los 12 recuerdos y encuentra a tu reina.</div>
+
+        <div id="gameFrame" class="game-frame">
+          <canvas id="gameCanvas" width="480" height="270" role="img" aria-label="Videojuego de plataformas en un campo de flores marchitas. Muévete hacia la derecha para buscar una rosa brillante.">Tu navegador necesita compatibilidad con HTML5 Canvas para jugar.</canvas>
+          <div class="game-overlay-top" aria-hidden="true">
+            <span class="overlay-date">19 · 10 · 26</span>
+            <span id="livesText" class="lives-text" aria-label="3 de 3 vidas restantes">VIDAS ♥ ♥ ♥</span>
+            <span id="heartsText" class="hearts-text">♡ 0/12</span>
+          </div>
+          <div class="toast" id="gameToast" aria-live="polite"></div>
+
+          <div class="pause-layer" id="pauseLayer" hidden>
+            <div class="pause-card">
+              <span class="eyebrow">UN PEQUEÑO DESCANSO</span>
+              <h2>¿Seguimos buscando? ♡</h2>
+              <p>La flor más bonita sigue esperando.</p>
+              <button type="button" id="resumeButton" class="primary-button">SEGUIR JUGANDO <span>➜</span></button>
+              <button type="button" id="restartPauseButton" class="secondary-button">Reiniciar paseo</button>
+              <button type="button" id="menuPauseButton" class="text-button">Volver a los capítulos</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-over-layer" id="gameOverLayer" hidden role="dialog" aria-modal="true" aria-labelledby="gameOverTitle">
+          <div class="game-over-card">
+            <span class="eyebrow">LAS FLORES MARCHITAS GANARON ESTA VEZ</span>
+            <div class="game-over-broken">♡</div>
+            <h2 id="gameOverTitle">Te quedaste sin vidas</h2>
+            <p>Pero una historia bonita merece otro intento. Salta cada flor marchita y vuelve a buscar a tu reina.</p>
+            <small id="gameOverHearts">0 recuerdos encontrados</small>
+            <button type="button" id="retryButton" class="primary-button">VOLVER A INTENTAR <span>↻</span></button>
+            <button type="button" id="gameOverMenuButton" class="secondary-button">Volver al menú</button>
+          </div>
+        </div>
+        <div class="memory-layer" id="memoryLayer" role="dialog" aria-modal="true" aria-labelledby="memoryTitle" hidden>
+          <div class="memory-dialog">
+            <div class="memory-stardust" aria-hidden="true">✦ &nbsp; ♥ &nbsp; ✦</div>
+            <div class="memory-badge" id="memoryCount">RECUERDO 01 / 12</div>
+            <div class="memory-card-body">
+              <div class="memory-picture-frame">
+                <img id="memoryPhoto" class="memory-photo" alt="Fotografía del recuerdo" hidden>
+                <div class="memory-placeholder" id="memoryPlaceholder" aria-label="Ilustración de recuerdo">♡<span>Aquí va nuestra foto</span></div>
+                <div class="memory-photo-footer">un pedacito de nosotros ♡</div>
+              </div>
+              <div class="memory-copy">
+                <span class="eyebrow">UN CORAZÓN, UNA HISTORIA</span>
+                <h2 id="memoryTitle">Nuestro primer sí</h2>
+                <p id="memoryCaption"></p>
+                <button id="continueMemoryButton" class="primary-button" type="button">SEGUIR AVENTURA <span>➜</span></button>
+                <span class="memory-counter-note">El camino continúa después de cada recuerdo.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-hud">
+          <div class="journey-heading"><span>♥ SALTA LAS FLORES MARCHITAS</span><span id="progressText">0%</span></div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div><span class="progress-flower">✿</span></div>
+        </div>
+        <div class="mobile-controls" aria-label="Controles táctiles para jugar en celular">
+          <div class="pad-group">
+            <button type="button" data-control="left" class="touch-button direction" aria-label="Caminar a la izquierda">◀</button>
+            <button type="button" data-control="right" class="touch-button direction" aria-label="Caminar a la derecha">▶</button>
+          </div>
+          <div class="pad-group action-group">
+            <button type="button" id="inspectButton" class="touch-button inspect" aria-label="Examinar flor">✿<small>MIRAR</small></button>
+            <button type="button" data-control="run" class="touch-button run" aria-label="Correr, mantener pulsado">»<small>CORRER</small></button>
+            <button type="button" data-control="jump" class="touch-button jump" aria-label="Saltar">↑<small>SALTAR</small></button>
+          </div>
+        </div>
+        <p class="desktop-help">PC: <kbd>←</kbd> <kbd>→</kbd> / <kbd>A</kbd> <kbd>D</kbd> moverse · <kbd>ESPACIO</kbd> saltar · <kbd>SHIFT</kbd> correr · <kbd>E</kbd> mirar · <kbd>ESC</kbd> pausar</p>
+      </div>
+    </main>
+
+    <main id="endScreen" class="screen end-screen" hidden>
+      <div class="end-stars" aria-hidden="true"></div>
+      <div class="end-wrap">
+        <div class="end-topline">CAPÍTULO 01 COMPLETADO <span>✦</span> 19/10/26</div>
+        <div class="end-grid">
+          <div class="end-memory">
+            <div class="photo-frame">
+              <img src="assets/nuestra_foto.jpg" alt="Nuestra foto de aniversario" class="photo-image">
+              <div class="photo-caption">mi lugar favorito eres tú. ♡</div>
+            </div>
+            <div class="end-pixels" aria-hidden="true"><img src="assets/chico_0.png" alt=""><span>♥</span><img src="assets/chica.png" alt=""></div>
+          </div>
+          <div class="end-message">
+            <div class="end-flower" aria-hidden="true">✿</div>
+            <span class="eyebrow">DESPUÉS DE TANTAS AVENTURAS...</span>
+            <h1>Te encontré. <span>♡</span></h1>
+            <p class="love-quote" id="anniversaryMessage">Un poco de las aventuras que he vivido a tu lado, y las ganas que tengo de vivir aún más a tu lado, <strong>te amo ♥</strong></p>
+            <div class="quote-rule">✦ &nbsp; 19 / 10 / 26 &nbsp; ✦</div>
+            <p class="end-closing"><span id="endingCollected">12 recuerdos de nuestro amor</span>. Y todavía nos esperan muchísimos más. ♡</p>
+            <div class="end-actions">
+              <button type="button" id="playAgainButton" class="primary-button">VOLVER A ENCONTRARTE <span>↻</span></button>
+              <button type="button" id="endMenuButton" class="secondary-button">Volver al inicio</button>
+            </div>
+          </div>
+        </div>
+        <footer class="end-footer">CONTINUARÁ... <span>19 / 10 / 27 🔒</span></footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

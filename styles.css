@@ -1,0 +1,183 @@
+:root{
+  --night:#211b30;--night-soft:#30253c;--night-border:#50445b;
+  --cream:#fff3df;--muted:#bfb0c0;--pink:#f38ba8;--pink-light:#ffd4d6;
+  --lavender:#d7c1e0;--gold:#f6d8a9;
+  font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  color:var(--cream);background:var(--night);
+  -webkit-font-smoothing:antialiased;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;width:100%}
+body{background:radial-gradient(ellipse at 45% -30%,#5b394f 0%,#2b2339 45%,#1b1929 100%);overscroll-behavior-y:none}
+button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+button:disabled{cursor:not-allowed}
+[hidden]{display:none!important}
+.screen{min-height:100dvh;padding:24px clamp(16px,4vw,52px);position:relative}
+.eyebrow,.brand-mark,.brand-date,.chapter-overline,.chapter-small,.menu-footer,.game-heading small,.mission-line,.overlay-date,.hearts-text,.journey-heading,.desktop-help,.end-topline,.end-footer,.quote-rule,.end-closing,.chapter-caption,.locked-note{
+  font-family:"Courier New",monospace;letter-spacing:1.1px;font-weight:700;
+}
+.eyebrow{font-size:11px;color:var(--gold);letter-spacing:2.1px}
+.muted{color:#bba5bd}
+.menu-wrap{max-width:1010px;margin:auto}
+.brand-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:3px 0 21px}
+.brand-mark{color:var(--cream);font-size:12px;letter-spacing:2px}
+.tiny-heart{color:var(--pink)}
+.brand-date{color:#afa1b8;font-size:11px}
+.hero{height:clamp(290px,37vw,416px);position:relative;overflow:hidden;border:3px solid #756072;background:#2d273a;box-shadow:0 0 0 5px #211b30,0 0 0 7px #514253,0 21px 0 -8px #11111f}
+.hero-art{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;position:absolute;inset:0;object-position:center 56%}
+.hero-vignette{position:absolute;inset:0;background:linear-gradient(90deg,rgba(21,18,32,.95) 0%,rgba(28,21,36,.76) 36%,rgba(29,23,36,.10) 72%)}
+.hero-copy{position:absolute;left:5.5%;top:11%;max-width:57%;z-index:1}
+.hero h1{font-size:clamp(39px,5.3vw,71px);letter-spacing:-2.8px;line-height:1.06;margin:16px 0 18px;font-weight:900;text-shadow:3px 4px 0 #251d30}
+.hero h1 em{color:#ffb2c0;font-style:normal}
+.title-dot{color:#ffd1a7}
+.hero-copy p{font-size:clamp(12px,1.5vw,16px);line-height:1.6;color:#f2e2e0;max-width:325px;margin:0;text-shadow:1px 2px #1e1826}
+.hero-corner{position:absolute;right:15px;top:11px;color:var(--pink-light);font-size:19px}
+.chapter-heading{display:flex;justify-content:space-between;align-items:end;margin:33px 0 16px;gap:12px}
+.chapter-heading h2{font-size:clamp(18px,2.6vw,25px);margin:5px 0 0;letter-spacing:-.4px}
+.chapter-small{font-size:11px;color:#c0a8c3}
+.chapter-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.chapter-card{width:100%;display:flex;text-align:left;align-items:center;gap:15px;min-height:116px;padding:19px 17px;border:2px solid #796075;background:#372b42;color:var(--cream);box-shadow:inset 0 0 0 2px #41314e,0 5px 0 #1b1826;transition:transform .16s,border-color .16s,background .16s}
+.chapter-card.available:hover{transform:translateY(-3px);background:#463044;border-color:#ffb5c4}
+.chapter-card.available:active{transform:translateY(2px);box-shadow:inset 0 0 0 2px #41314e,0 2px 0 #1b1826}
+.chapter-illustration{display:grid;place-items:center;width:64px;height:64px;flex:none;background:#714459;border:2px solid #b5768b;color:#ffc9d4;box-shadow:inset -5px -5px #543346;font-size:39px;line-height:1}
+.chapter-info{display:flex;flex-direction:column;align-items:start;min-width:0;flex:1;gap:5px}
+.chapter-overline{font-size:10px;color:#eebac6;letter-spacing:.7px}
+.chapter-info strong{font-size:clamp(22px,3vw,32px);letter-spacing:1px;font-weight:850}
+.chapter-caption{font-size:10px;letter-spacing:.15px;line-height:1.35;color:#c5b2c8}
+.chapter-action{font-size:28px;color:#ffc3d1}
+.chapter-card.locked{background:#292537;border-color:#4c4659;color:#a59bab}
+.chapter-card.locked:hover{border-color:#746178;background:#30283c}
+.lock-illustration{background:#373044;border-color:#50475c;color:#867889;box-shadow:inset -5px -5px #292538}
+.locked .chapter-overline{color:#a594b1}
+.locked .chapter-caption{color:#81798d}
+.locked .chapter-action{color:#91839c}
+.padlock{font-size:16px;vertical-align:middle;opacity:.8}
+.locked-note{min-height:19px;font-size:11px;color:#ffd0c8;margin:10px 0 4px;text-align:right}
+.menu-footer{margin-top:27px;padding:18px 1px;border-top:1px solid #514052;display:flex;justify-content:space-between;gap:12px;color:#978ba2;font-size:9px}
+.footer-heart{color:#bb8297}
+/* Gameplay */
+.game-screen{display:flex;align-items:center;justify-content:center;overflow-x:hidden;padding:18px clamp(12px,3vw,35px)}
+.game-layout{width:min(100%,1030px);margin:auto}
+.game-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.icon-button{display:flex;align-items:center;justify-content:center;gap:7px;min-width:44px;height:41px;color:#ffdfdb;background:#382c46;border:2px solid #62506a;padding:0 12px;border-radius:0;font-size:24px;font-family:"Courier New",monospace;font-weight:bold}
+.icon-button:hover{background:#4e3857}
+.icon-button span{font-size:11px;letter-spacing:1px}
+.game-heading{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.game-heading small{color:#dca4ba;font-size:10px}
+.game-heading strong{font-size:clamp(15px,2.3vw,22px)}
+.game-top-actions{display:flex;gap:8px}
+.sound-button{font-size:21px}
+.mission-line{font-size:clamp(9px,1.5vw,11px);color:#e5d7df;margin:0 0 10px;text-align:center;letter-spacing:.55px;line-height:1.35}
+.mission-line span{color:#ffc4a9}
+.game-frame{position:relative;width:100%;padding:5px;background:#554357;border:2px solid #907087;box-shadow:0 0 0 5px #211b30,0 0 0 7px #44354f,0 14px 0 -6px #13141c;isolation:isolate}
+#gameCanvas{display:block;width:100%;height:auto;image-rendering:pixelated;background:#272137;aspect-ratio:auto;touch-action:none}
+.game-overlay-top{pointer-events:none;position:absolute;left:12px;right:12px;top:13px;display:flex;justify-content:space-between;z-index:3}
+.overlay-date,.hearts-text{background:rgba(32,26,46,.79);border:1px solid #a17a92;font-size:11px;padding:6px 9px;color:#fff0da}
+.hearts-text{color:#ffa5c1}
+.toast{pointer-events:none;position:absolute;bottom:19%;left:50%;transform:translateX(-50%) translateY(10px);width:max-content;max-width:calc(100% - 35px);text-align:center;background:#fff0d7;border:2px solid #7a506c;color:#4a2f43;box-shadow:4px 4px 0 #382639;padding:9px 14px;font-size:clamp(11px,1.5vw,15px);line-height:1.4;font-weight:700;opacity:0;transition:opacity .18s,transform .18s;z-index:4}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.bottom-hud{margin:20px 2px 0}
+.journey-heading{display:flex;justify-content:space-between;color:#c8b5c7;font-size:10px;margin-bottom:10px;letter-spacing:1.4px}
+.journey-heading span:last-child{color:#ffbcce}
+.progress-track{height:13px;background:#413449;border:2px solid #625166;position:relative;margin-right:13px}
+.progress-fill{height:100%;width:0%;background:repeating-linear-gradient(90deg,#d67c99 0 10px,#f7a7b6 10px 20px);transition:width .1s linear}
+.progress-flower{position:absolute;right:-19px;top:-10px;color:#ffa5ba;font-size:22px}
+.desktop-help{text-align:center;color:#a99aaf;font-size:10px;letter-spacing:0;margin:19px 0 0;line-height:1.9}
+kbd{border:1px solid #6b596c;color:#e2d0df;padding:2px 5px;background:#382f45;font-size:10px;white-space:nowrap}
+.mobile-controls{display:none;justify-content:space-between;gap:12px;margin:20px 0 5px;user-select:none;-webkit-user-select:none;touch-action:none}
+.pad-group{display:flex;gap:11px}
+.touch-button{touch-action:none;user-select:none;-webkit-user-select:none;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #9a778c;background:#463249;color:#fff0e9;width:65px;height:62px;font-size:24px;font-family:"Courier New",monospace;font-weight:900;box-shadow:0 5px 0 #1b1724}
+.touch-button small{font-size:9px;letter-spacing:.4px;margin-top:1px}
+.touch-button:active,.touch-button.is-held{background:#c97898;color:#24192c;transform:translateY(4px);box-shadow:0 1px 0 #1b1724}
+.touch-button.jump{background:#945c7a;border-color:#e2a2bc}
+.touch-button.inspect{background:#554260}
+.pause-layer{position:absolute;inset:5px;display:flex;align-items:center;justify-content:center;background:rgba(24,18,35,.86);z-index:7;padding:10px}
+.pause-card{width:min(420px,94%);text-align:center;background:#342740;border:3px solid #edb0bf;box-shadow:8px 8px #1e1829;padding:clamp(16px,3vw,29px);display:flex;flex-direction:column;align-items:stretch;gap:11px}
+.pause-card h2{font-size:clamp(19px,3vw,28px);margin:3px 0}
+.pause-card p{margin:0 0 7px;color:#d8c5d4;font-size:13px}
+.primary-button,.secondary-button,.text-button{border:2px solid;min-height:47px;padding:11px 15px;text-align:center;font-size:12px;font-weight:800;letter-spacing:.7px}
+.primary-button{display:flex;justify-content:space-between;align-items:center;background:#f4a5b7;border-color:#ffcfca;color:#352337;box-shadow:0 4px 0 #a95d80}
+.primary-button:hover{background:#ffd0cf}
+.primary-button span{font-size:20px}
+.secondary-button{background:#3b2d48;border-color:#77617a;color:#fff0e5}
+.secondary-button:hover{background:#543b5a}
+.text-button{color:#d6b8c7;background:transparent;border-color:transparent;min-height:36px}
+.text-button:hover{text-decoration:underline}
+/* Ending */
+.end-screen{display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 25% 20%,#5f3c54 0%,#34263e 45%,#1d1b2d 100%);overflow:hidden}
+.end-screen:before,.end-screen:after{content:"✦     ✧      ✦        ·       ✦     ✧";position:absolute;color:#e5b4c7;opacity:.18;left:4%;right:4%;top:8%;font-size:25px;letter-spacing:28px;pointer-events:none}
+.end-screen:after{top:auto;bottom:8%;text-align:right}
+.end-wrap{width:min(1040px,100%);position:relative;z-index:1}
+.end-topline{display:flex;justify-content:space-between;border-bottom:1px solid #705269;padding-bottom:16px;color:#edc0cc;font-size:12px;letter-spacing:1.5px}
+.end-grid{display:grid;grid-template-columns:minmax(245px,.86fr) minmax(300px,1fr);gap:clamp(30px,5vw,80px);align-items:center;padding:clamp(23px,5vw,55px) 0}
+.end-memory{position:relative;text-align:center}
+.photo-frame{background:#fff0df;padding:12px 12px 15px;transform:rotate(-3deg);box-shadow:12px 13px 0 #241a2e,0 0 0 2px #f6cfca;max-width:365px;margin:0 auto}
+.photo-image{width:100%;height:clamp(225px,31vw,358px);object-fit:cover;object-position:center 40%;display:block}
+.photo-caption{font-family:"Courier New",monospace;font-weight:bold;color:#714a60;font-size:clamp(11px,1.6vw,15px);padding-top:15px}
+.end-pixels{display:flex;justify-content:center;align-items:center;gap:15px;margin-top:20px;height:67px}
+.end-pixels img{width:43px;height:66px;image-rendering:pixelated;object-fit:contain}
+.end-pixels span{font-size:31px;color:#ffa4b6;animation:pulse 1.2s infinite}
+.end-message{max-width:540px}
+.end-flower{font-family:"Courier New",monospace;font-size:64px;line-height:1;color:#ff99b9;text-shadow:3px 4px #6f345b;animation:pulse 2.5s infinite;margin-bottom:18px}
+.end-message h1{font-size:clamp(32px,4.8vw,57px);letter-spacing:-1.5px;margin:15px 0 25px;line-height:1.1}
+.end-message h1 span{color:#ff91b0}
+.love-quote{font-family:Georgia,"Times New Roman",serif;font-style:italic;line-height:1.56;font-size:clamp(21px,2.8vw,33px);color:#fff0df;margin:0}
+.love-quote strong{font-style:normal;color:#ffadbf;text-decoration:underline;text-underline-offset:6px}
+.quote-rule{font-size:12px;color:#dab2bf;margin:24px 0}
+.end-closing{font-family:inherit;letter-spacing:0;font-size:14px;line-height:1.7;color:#d7c7d3;max-width:430px;margin:0 0 25px}
+.end-actions{display:flex;flex-direction:column;gap:10px;max-width:360px}
+.end-footer{border-top:1px solid #6d4b65;padding-top:18px;display:flex;justify-content:space-between;color:#b9a8b6;font-size:10px}
+.end-footer span{color:#efb1bd}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media (max-width:680px){
+  .screen{padding:17px 14px}
+  .brand-bar{margin:2px 0 16px}.brand-mark{font-size:10px;letter-spacing:1px}.brand-date{font-size:9px}
+  .hero{height:285px}.hero-art{object-position:100% center}.hero-vignette{background:linear-gradient(90deg,rgba(22,17,33,.95),rgba(28,22,36,.60) 56%,rgba(29,23,36,.06))}
+  .hero-copy{top:6%;left:6%;max-width:75%}.hero h1{font-size:clamp(33px,8.2vw,50px);letter-spacing:-1.3px;margin:14px 0}.hero-copy p{max-width:240px;font-size:12px}
+  .eyebrow{font-size:9px;letter-spacing:1.1px}
+  .chapter-heading{margin:26px 0 13px}.chapter-heading h2{font-size:18px}
+  .chapter-grid{grid-template-columns:1fr;gap:12px}.chapter-card{min-height:95px;padding:13px}.chapter-illustration{width:52px;height:54px;font-size:32px}.chapter-info strong{font-size:24px}.chapter-caption{font-size:10px}.chapter-overline{font-size:9px}
+  .menu-footer{margin-top:17px;font-size:8px;line-height:1.6}
+  .game-screen{align-items:start;padding:13px 11px}.game-topbar{gap:5px}.game-heading small{font-size:8px}.game-heading strong{font-size:14px}.icon-button{min-width:35px;height:36px;padding:0 7px;font-size:20px}.icon-button span{font-size:9px}.game-top-actions{gap:5px}
+  .mission-line{font-size:9px;letter-spacing:0}.mobile-controls{display:flex}.desktop-help{display:none}
+  .touch-button{width:clamp(48px,13vw,65px);height:clamp(52px,14vw,64px);font-size:23px}.pad-group{gap:8px}
+  .bottom-hud{margin-top:20px}.game-frame{padding:3px}.toast{font-size:12px;padding:7px 10px;bottom:15%}
+  .end-grid{grid-template-columns:1fr;gap:21px;padding:25px 0}.end-memory{order:2}.end-message{order:1}.end-message h1{font-size:38px;margin:10px 0 14px}.end-flower{font-size:37px;margin-bottom:8px}.love-quote{font-size:24px}.quote-rule{margin:17px 0}.end-closing{font-size:12px;margin-bottom:17px}.end-actions{max-width:none;display:grid;grid-template-columns:1fr 1fr}.primary-button,.secondary-button{font-size:10px;min-height:46px;padding:9px 10px}.photo-frame{max-width:240px}.photo-image{height:235px}.end-pixels{height:38px;margin-top:7px}.end-pixels img{height:40px;width:31px}.end-pixels span{font-size:19px}.end-topline,.end-footer{font-size:9px}
+}
+@media (max-width:375px){.game-heading strong{font-size:12px}.game-heading small{font-size:7px}.icon-button span{display:none}.touch-button{width:46px}.pad-group{gap:6px}.hero{height:257px}.hero-copy p{max-width:180px}.chapter-card{min-height:88px}}
+@media (min-width:681px) and (pointer:coarse){.mobile-controls{display:flex}.desktop-help{display:none}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* CARTAS DE RECUERDOS: pantalla completa, responsiva y con pausa automática. */
+.memory-edit-link{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:22px 0 4px;color:#ecb9c9;font:700 11px "Courier New",monospace;letter-spacing:.8px}
+.memory-edit-link a{color:#ffd0d8;text-decoration:none;border-bottom:1px dashed #ca91a4;padding-bottom:4px}
+.memory-edit-link a:hover{color:white}
+.memory-layer{position:fixed;inset:0;z-index:250;display:grid;place-items:center;overflow-y:auto;padding:max(16px,env(safe-area-inset-top)) 14px max(16px,env(safe-area-inset-bottom));background:rgba(18,14,31,.91);backdrop-filter:blur(9px)}
+.memory-dialog{position:relative;width:min(780px,100%);max-height:calc(100dvh - 28px);overflow:auto;background:linear-gradient(145deg,#483148,#292238 85%);border:3px solid #aa7b93;box-shadow:0 0 0 6px #262034,0 16px 0 -6px #0d0d1c,0 20px 75px #050310;color:#fff2e5;padding:clamp(16px,3vw,28px)}
+.memory-stardust{position:absolute;right:25px;top:15px;color:#ffc4b7;letter-spacing:12px;font-size:13px}
+.memory-badge{font:700 11px "Courier New",monospace;color:#ffcccf;letter-spacing:2px;margin:2px 0 19px}
+.memory-card-body{display:grid;grid-template-columns:minmax(170px,1fr) minmax(220px,.95fr);gap:clamp(20px,5vw,46px);align-items:center}
+.memory-picture-frame{min-width:0;background:#fff3e5;padding:10px 10px 12px;box-shadow:7px 9px 0 #201729;transform:rotate(-2deg)}
+.memory-photo{display:block;width:100%;height:min(47vh,330px);object-fit:contain;background:#f6e9de}
+.memory-placeholder{min-height:225px;height:min(47vh,330px);background:radial-gradient(ellipse at 30% 20%,#b27a99,#4d3c64 70%);display:flex;align-items:center;justify-content:center;flex-direction:column;font-size:74px;color:#ffe4ec;text-align:center}
+.memory-placeholder span{font:700 11px "Courier New",monospace;letter-spacing:1px;color:#ffe1dd}
+.memory-photo-footer{text-align:center;color:#936579;padding-top:10px;font:700 11px "Courier New",monospace}
+.memory-copy{display:flex;flex-direction:column;align-items:start;gap:13px}
+.memory-copy h2{font-size:clamp(26px,4vw,43px);letter-spacing:-1.1px;line-height:1.1;margin:0;color:#ffe3e2}
+.memory-copy p{font:italic clamp(17px,2.1vw,25px)/1.5 Georgia,serif;color:#fff6ee;margin:7px 0 12px}
+.memory-copy .primary-button{width:100%;max-width:300px}
+.memory-counter-note{font:700 10px "Courier New",monospace;color:#c2a7c0;line-height:1.5}
+@media(max-width:590px){.memory-dialog{padding:16px}.memory-badge{margin-bottom:12px}.memory-card-body{grid-template-columns:1fr;gap:15px}.memory-picture-frame{max-width:min(66%,270px);margin:0 auto;padding:7px}.memory-photo,.memory-placeholder{height:min(33vh,215px);min-height:0}.memory-placeholder{font-size:50px}.memory-copy{gap:7px;text-align:center;align-items:center}.memory-copy h2{font-size:27px}.memory-copy p{font-size:18px;line-height:1.4;margin:3px 0 7px}.memory-stardust{right:10px;top:10px}.memory-photo-footer{font-size:9px}.memory-copy .primary-button{min-height:43px}}
+@media(max-height:620px) and (min-width:591px){.memory-dialog{padding:14px 20px}.memory-badge{margin-bottom:8px}.memory-photo,.memory-placeholder{height:min(44vh,250px)}.memory-copy{gap:8px}.memory-copy h2{font-size:26px}.memory-copy p{font-size:18px}}
+
+/* Flores dañinas: tres vidas y pantalla de derrota. */
+.lives-text{background:rgba(45,21,39,.86);border:1px solid #dba0ae;color:#ffb6c9;font:900 11px "Courier New",monospace;padding:6px 9px;letter-spacing:1px;white-space:nowrap}
+.game-over-layer{position:fixed;inset:0;z-index:260;display:grid;place-items:center;padding:18px;background:rgba(15,12,28,.9);backdrop-filter:blur(8px);overflow:auto}
+.game-over-card{display:flex;flex-direction:column;align-items:center;gap:15px;width:min(450px,100%);background:#3c2b42;border:3px solid #d99bac;padding:clamp(20px,4vw,36px);box-shadow:8px 8px 0 #171321;text-align:center}
+.game-over-card h2{margin:0;color:#ffe4dc;font-size:clamp(24px,4vw,38px)}
+.game-over-card p{margin:0 0 8px;color:#efe0e9;line-height:1.65;font-size:14px}
+.game-over-card small{color:#ffc4d6;font-family:monospace;margin-bottom:10px}
+.game-over-card button{width:100%}
+.game-over-broken{color:#ff9db6;font-size:70px;line-height:1.15}
+@media(max-width:520px){.overlay-date,.hearts-text,.lives-text{font-size:9px;padding:5px 5px;letter-spacing:0}.game-overlay-top{left:7px;right:7px;top:9px}}
